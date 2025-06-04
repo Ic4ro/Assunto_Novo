@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.example.api.modelo.Pessoa;
+import br.com.example.api.modelo.Veiculo;
 import br.com.example.api.repositorio.Repositorio;
 
 @RestController
@@ -21,26 +21,26 @@ public class Controle {
     private Repositorio acao;
 
     @PostMapping("/api")
-    public Pessoa cadastrar(@RequestBody Pessoa obj) {
+    public Veiculo cadastrar(@RequestBody Veiculo obj) {
         return acao.save(obj);
     }
 
     @GetMapping("/api")
-    public List<Pessoa> selecionar() {
+    public List<Veiculo> selecionar() {
         return acao.findAll();
     }
 
     @GetMapping("/api/{codigo}")
-    public Pessoa seleceionarPeloCodigo(@PathVariable int codigo) {
+    public Veiculo seleceionarPeloCodigo(@PathVariable int codigo) {
         return acao.findByCodigo(codigo);
     }
     @PutMapping("/api")
-    public Pessoa editar(@RequestBody Pessoa obj) {
+    public Veiculo editar(@RequestBody Veiculo obj) {
         return acao.save(obj);
     }
     @DeleteMapping("/api/{codigo}")
     public void remover(@PathVariable int codigo) {
-        Pessoa obj = seleceionarPeloCodigo(codigo);
+        Veiculo obj = seleceionarPeloCodigo(codigo);
         acao.delete(obj);
     }
 
@@ -55,13 +55,13 @@ public class Controle {
         return "Seja bem vindo";
     }
 
-    @GetMapping("/boasVindas/{nome}")
-    public String boasVindas(@PathVariable String nome) {
-        return "Seja bem vindo (a) " + nome;
+    @GetMapping("/boasVindas/{modelo}")
+    public String boasVindas(@PathVariable String modelo) {
+        return "Seja bem vindo (a) " + modelo;
     }
 
-    @PostMapping("/pessoa")
-    public Pessoa pessoa(@RequestBody Pessoa p) {
-        return p;
+    @PostMapping("/veiculo")
+    public Veiculo veiculo(@RequestBody Veiculo v) {
+        return v;
     }
 }
